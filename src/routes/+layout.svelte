@@ -1,20 +1,18 @@
 <script>
-	import "../app.postcss";
-    import Header from './Header.svelte';
-    import './styles.css';
+	import '../app.postcss';
+	import { Header } from '$components/sections/header';
+	import './styles.css';
 	import '../app.postcss';
 </script>
 
 <div class="app">
-	<Header></Header>
+	<Header />
 
 	<main>
-		<slot></slot>
+		<slot />
 	</main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
+	<footer />
 </div>
 
 <style>

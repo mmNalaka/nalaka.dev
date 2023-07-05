@@ -26,15 +26,13 @@ import {
 	X
 } from "lucide-svelte";
 
-import GitHub from "./GitHub.svelte";
+import GitHub from "./Github.svelte";
 import Google from "./Google.svelte";
-import Logo from "./Logo.svelte";
 
 
 export type Icon = LucideIcon;
 
 export const Icons = {
-	logo: Logo,
 	close: X,
 	spinner: Loader2,
 	chevronLeft: ChevronLeft,
