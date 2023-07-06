@@ -1,7 +1,11 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script  lang="ts">
+	import Title from '$components/ui/title/Title.svelte';
+
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
+	$: console.log(data);
 </script>
 
 <svelte:head>
@@ -9,36 +13,14 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-	
-</section>
+<div class="w-full">
+	<section class="flex flex-col items-start mt-4 text-secondary-foreground lg:mt-6">
+		<Title class="text-accent-foreground" styleOrder="h2">Hi, I'm Nalaka</Title>
+		<p class="mt-2 text-base">
+			Welcome to my personal website. I'm full stack developer and I love to build web applications.
+		</p>
+	</section>
+</div>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
 </style>

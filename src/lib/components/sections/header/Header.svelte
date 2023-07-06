@@ -18,26 +18,25 @@
 </script>
 
 <header>
-	<nav
-		class=" bg-transparent fixed w-full z-20 top-0 left-0"
-	>
-		<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-			<a href="/" class="flex items-center border-2 py-1 px-2 border-rose-300 text-rose-300">
-				<span class="self-center text-xl font-semibold whitespace-nowrap"
-					>N.DEV</span
-				>
+	<nav class="fixed top-0 left-0 z-20 w-full bg-transparent">
+		<div class="container flex flex-wrap items-center justify-between max-w-4xl p-4 mx-auto">
+			<a
+				href="/"
+				class="flex items-center px-2 py-1 transition-all border-2 text-accent-foreground border-accent-foreground hover:no-underline hover:bg-accent-foreground hover:text-background"
+			>
+				<span class="self-center text-xl font-semibold whitespace-nowrap">N.DEV</span>
 			</a>
 			<div class="flex md:order-2">
 				<a
 					href="https://github.com/mmNalaka"
-					class="text-gray-400 cus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+					class="px-4 py-2 mr-3 text-sm font-medium text-center rounded-lg text-primary-foreground hover:text-accent-foreground cus:ring-4 focus:outline-none focus:ring-blue-300 md:mr-0 dark:focus:ring-blue-800"
 				>
-					<Icons.gitHub class="w-6 h-6 inline-block mr-2" />
+					<Icons.gitHub class="inline-block w-6 h-6 mr-2" />
 				</a>
 				<button
 					data-collapse-toggle="navbar-sticky"
 					type="button"
-					class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+					class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm rounded-lg text-primary-foreground md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:focus:ring-gray-600"
 					aria-controls="navbar-sticky"
 					aria-expanded="false"
 				>
@@ -64,13 +63,13 @@
 				id="navbar-sticky"
 			>
 				<ul
-					class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+					class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700"
 				>
 					{#each links as link}
 						<li>
 							<a
 								href={link.href}
-								class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+								class="block py-2 pl-3 pr-4 rounded text-primary-foreground hover:text-accent-foreground md:p-0"
 								aria-current="page">{link.label}</a
 							>
 						</li>
@@ -80,6 +79,3 @@
 		</div>
 	</nav>
 </header>
-
-<style>
-</style>

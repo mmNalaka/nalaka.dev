@@ -35,6 +35,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@ianvs/prettier-plugin-sort-imports": "^4.0.2",
 		"class-variance-authority": "^0.6.1",
 		"clsx": "^1.2.1",
 		"lucide-svelte": "^0.257.0",
