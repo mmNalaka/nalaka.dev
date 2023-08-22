@@ -5,7 +5,6 @@
 
 	export let data: PageData;
 
-	$: console.log(data);
 </script>
 
 <svelte:head>
@@ -16,9 +15,22 @@
 <div class="w-full">
 	<section class="flex flex-col items-start mt-4 text-secondary-foreground lg:mt-6">
 		<Title class="text-accent-foreground" styleOrder="h2">Hi, I'm Nalaka</Title>
-		<p class="mt-2 text-base">
-			Welcome to my personal website. I'm full stack developer and I love to build web applications.
+		<p class="mt-2 text-xl">
+			Welcome to my personal website. I'm full stack developer living in Stockholm, Sweden and I love building awesome things.
 		</p>
+	</section>
+
+	<section>
+		{#if data.quote}
+			<blockquote>
+				<p class="text-base text-secondary-foreground">
+					{data.quote.quote}
+				</p>
+				<cite class="block mt-2 text-sm text-accent-foreground">
+					{data.quote.author}
+				</cite>
+			</blockquote>
+		{/if}
 	</section>
 </div>
 

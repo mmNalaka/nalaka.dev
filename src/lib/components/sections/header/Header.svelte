@@ -8,11 +8,11 @@
 		},
 		{
 			label: 'Blog',
-			href: '/'
+			href: '/blog'
 		},
 		{
 			label: 'Snippets',
-			href: '/'
+			href: '/snippets'
 		}
 	];
 </script>

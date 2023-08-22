@@ -6,7 +6,7 @@ import { appConfig } from '$lib/config';
 export const prerender = true;
 
 const getQuote = async () => {
-	const res = await fetch(`${appConfig.api.quoteApi.url}?category=education`, {
+	const res = await fetch(`${appConfig.api.quoteApi.url}?category=inspirational`, {
 		headers: {
 			'X-Api-Key': appConfig.api.quoteApi.key
 		}
