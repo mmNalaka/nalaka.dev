@@ -19,7 +19,6 @@
 
 	$: className = cn(styleOrder ? orderStyles[styleOrder] : orderStyles[order], className);
 
-	$: console.log(className, styleOrder, order);
 </script>
 
 <svelte:element this={order} class={cn(className)}>

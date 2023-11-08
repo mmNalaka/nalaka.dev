@@ -1,26 +1,37 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+	import Badge from '$components/ui/badge/Badge.svelte';
+
+	$: tag = $page.url.searchParams.get('tag');
+	$: language = $page.url.searchParams.get('tag');
+
+	export let data;
+	let isActiveTag = (t: string) => t === tag;
+</script>
+
 <svelte:head>
-	<title>About</title>
+	<title>Blog</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 
 <div class="text-column">
-	<h1>About this app</h1>
+	{#if tag}
+		<h1>Posts tagged with {tag}</h1>
+	{:else if language}
+		<h1>Posts written in {language}</h1>
+	{:else}
+		<h1>Blog</h1>
+	{/if}
 
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
-
-	<pre>npm create svelte@latest</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
-	</p>
-
-	<p>
-		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-		using it with JavaScript disabled!
-	</p>
+	{#if data.tags.data}
+		<div class="flex gap-1">
+			{#each data.tags.data as tag}
+				<Badge
+					class={isActiveTag(tag.name ?? '') ? 'bg-accent-foreground' : 'bg-foreground'}
+					variant="default"
+					href={`/blog?tag=${tag.name}`}>#{tag.name}</Badge
+				>
+			{/each}
+		</div>
+	{/if}
 </div>
