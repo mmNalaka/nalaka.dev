@@ -26,8 +26,8 @@ import {
 	X
 } from "lucide-svelte";
 
-import GitHub from "./Github.svelte";
-import Google from "./Google.svelte";
+import GitHub from "./github.svelte";
+import Google from "./google.svelte";
 
 
 export type Icon = LucideIcon;
