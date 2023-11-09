@@ -1,4 +1,4 @@
-import { API_NINJA_KEY } from '$env/static/private'
+import { env } from '$env/dynamic/private';
 
 export const appConfig = {
 	title: 'N.DEV',
@@ -12,8 +12,8 @@ export const appConfig = {
 
 	api: {
 		quoteApi: {
-            url: 'https://api.api-ninjas.com/v1/quotes',
-            key: API_NINJA_KEY
-        }
+			url: 'https://api.api-ninjas.com/v1/quotes',
+			key: env.API_NINJA_KEY || ''
+		}
 	}
 };
