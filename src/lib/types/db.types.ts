@@ -84,9 +84,12 @@ export interface Database {
 				Row: {
 					author_id: string | null;
 					content: string | null;
+					cover_image: string | null;
 					created_at: string | null;
 					excerpt: string | null;
 					id: number;
+					slug: string;
+					thumbnail: string | null;
 					title: string | null;
 					updated_at: string | null;
 					views: number | null;
@@ -94,9 +97,12 @@ export interface Database {
 				Insert: {
 					author_id?: string | null;
 					content?: string | null;
+					cover_image?: string | null;
 					created_at?: string | null;
 					excerpt?: string | null;
 					id?: never;
+					slug: string;
+					thumbnail?: string | null;
 					title?: string | null;
 					updated_at?: string | null;
 					views?: number | null;
@@ -104,9 +110,12 @@ export interface Database {
 				Update: {
 					author_id?: string | null;
 					content?: string | null;
+					cover_image?: string | null;
 					created_at?: string | null;
 					excerpt?: string | null;
 					id?: never;
+					slug?: string;
+					thumbnail?: string | null;
 					title?: string | null;
 					updated_at?: string | null;
 					views?: number | null;
