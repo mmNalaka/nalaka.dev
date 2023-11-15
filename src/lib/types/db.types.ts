@@ -54,16 +54,22 @@ export interface Database {
 			};
 			post_tags: {
 				Row: {
+					created_at: string;
+					id: number;
 					post_id: number;
-					tag_id: number;
+					tag: string;
 				};
 				Insert: {
+					created_at?: string;
+					id?: number;
 					post_id: number;
-					tag_id: number;
+					tag: string;
 				};
 				Update: {
+					created_at?: string;
+					id?: number;
 					post_id?: number;
-					tag_id?: number;
+					tag?: string;
 				};
 				Relationships: [
 					{
@@ -73,10 +79,10 @@ export interface Database {
 						referencedColumns: ['id'];
 					},
 					{
-						foreignKeyName: 'post_tags_tag_id_fkey';
-						columns: ['tag_id'];
+						foreignKeyName: 'post_tags_tag_fkey';
+						columns: ['tag'];
 						referencedRelation: 'tags';
-						referencedColumns: ['id'];
+						referencedColumns: ['name'];
 					}
 				];
 			};
@@ -159,34 +165,6 @@ export interface Database {
 						foreignKeyName: 'profiles_id_fkey';
 						columns: ['id'];
 						referencedRelation: 'users';
-						referencedColumns: ['id'];
-					}
-				];
-			};
-			snippest_tags: {
-				Row: {
-					snippet_id: number;
-					tag_id: number;
-				};
-				Insert: {
-					snippet_id: number;
-					tag_id: number;
-				};
-				Update: {
-					snippet_id?: number;
-					tag_id?: number;
-				};
-				Relationships: [
-					{
-						foreignKeyName: 'snippest_tags_snippet_id_fkey';
-						columns: ['snippet_id'];
-						referencedRelation: 'snippets';
-						referencedColumns: ['id'];
-					},
-					{
-						foreignKeyName: 'snippest_tags_tag_id_fkey';
-						columns: ['tag_id'];
-						referencedRelation: 'tags';
 						referencedColumns: ['id'];
 					}
 				];

@@ -26,7 +26,7 @@
 						<a href={`/blog/${post.slug}`} class="text-xl font-semibold text-accent-foreground">
 							{post.title}
 						</a>
-						<p class="text-sm">{post.excerpt}</p>
+						<p class="text-sm text-slate-400">{post.excerpt}</p>
 					</div>
 				{/each}
 			</section>

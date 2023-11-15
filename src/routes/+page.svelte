@@ -13,7 +13,7 @@
 </svelte:head>
 
 <div class="w-full">
-	<div class="flex flex-col items-start mt-4 text-secondary-foreground lg:mt-6">
+	<div class="flex flex-col items-start text-secondary-foreground">
 		<Title class="mb-4 text-4xl font-bold text-accent-foreground" styleOrder="h2"
 			>Hey, I'm Nalaka</Title
 		>
@@ -27,7 +27,7 @@
 	<section class="mt-12">
 		<div class="flex items-center justify-between mb-4">
 			<h3 class="text-2xl font-semibold tracking-tight scroll-m-20">Latest posts</h3>
-			<Button variant="ghost" href="/blog">
+			<Button variant="ghost" href="/blog" size="sm">
 				See all
 				<ArrowRight class="w-4 h-4 ml-2" />
 			</Button>
@@ -35,8 +35,8 @@
 		<div class="grid grid-flow-row gap-4">
 			{#each data.latestPosts as post}
 				<Card.Root class="px-4 py-2">
-					<Card.Title>{post.title}</Card.Title>
-					<Card.Description>{post.excerpt}</Card.Description>
+					<Card.Title>asas</Card.Title>
+					<Card.Description>asas</Card.Description>
 				</Card.Root>
 			{/each}
 		</div>
