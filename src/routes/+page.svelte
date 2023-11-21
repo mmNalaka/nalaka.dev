@@ -35,8 +35,8 @@
 		<div class="grid grid-flow-row gap-4">
 			{#each data.latestPosts as post}
 				<Card.Root class="px-4 py-2">
-					<Card.Title>asas</Card.Title>
-					<Card.Description>asas</Card.Description>
+					<Card.Title>{post.title}</Card.Title>
+					<Card.Description>{post.excerpt}</Card.Description>
 				</Card.Root>
 			{/each}
 		</div>
@@ -47,20 +47,12 @@
 			<h3 class="text-xl font-semibold tracking-tight scroll-m-20">Popular posts</h3>
 		</div>
 		<div class="grid grid-flow-row gap-4">
-			<Card.Root class="px-4 py-2">
-				<Card.Title>Card Title</Card.Title>
-				<Card.Description>Card Description</Card.Description>
-			</Card.Root>
-
-			<Card.Root class="px-4 py-2">
-				<Card.Title>Card Title</Card.Title>
-				<Card.Description>Card Description</Card.Description>
-			</Card.Root>
-
-			<Card.Root class="px-4 py-2">
-				<Card.Title>Card Title</Card.Title>
-				<Card.Description>Card Description</Card.Description>
-			</Card.Root>
+			{#each data.popularPosts as post}
+				<Card.Root class="px-4 py-2">
+					<Card.Title>{post.title}</Card.Title>
+					<Card.Description>{post.excerpt}</Card.Description>
+				</Card.Root>
+			{/each}
 		</div>
 	</section>
 </div>

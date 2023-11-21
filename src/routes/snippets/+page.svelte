@@ -1,21 +1,56 @@
-<script>
-	import { signIn, signOut } from '@auth/sveltekit/client';
+<script lang="ts">
 	import { page } from '$app/stores';
+	import Badge from '$components/ui/badge/Badge.svelte';
+	import * as Card from '$lib/components/ui/card';
+	import { cn } from '$lib/utils.js';
+
+	$: tag = $page.url.searchParams.get('tag');
+	$: category = $page.url.searchParams.get('category');
+	$: language = $page.url.searchParams.get('language');
+
+	$: isActiveTag = (t: string) => t === tag;
+
+	export let data;
 </script>
 
-<h1>SvelteKit Auth Example</h1>
-<p>
-	{#if $page.data.session}
-		{#if $page.data.session.user?.image}
-			<span style="background-image: url('{$page.data.session.user.image}')" class="avatar" />
-		{/if}
-		<span class="signedInText">
-			<small>Signed in as</small><br />
-			<strong>{$page.data.session.user?.name ?? 'User'}</strong>
-		</span>
-		<button on:click={() => signOut()} class="button">Sign out</button>
-	{:else}
-		<span class="notSignedInText">You are not signed in</span>
-		<button on:click={() => signIn('github')}>Sign In with GitHub</button>
-	{/if}
-</p>
+<svelte:head>
+	<title>Blog</title>
+	<meta id="description" content="About this app" />
+</svelte:head>
+
+<div>
+	<div class="grid grid-cols-6 gap-4">
+		<div class="col-span-4">
+			<h2 class="text-4xl font-bold">{tag ? `# ${tag}` : 'Code snippets'}</h2>
+
+			<section class="mt-8">
+				{#each data.snippets as snippet}
+					<div class="pt-1.5 pb-3 border-b border-accent">
+						<a href={`/blog/${snippet.slug}`} class="font-semibold text-accent-foreground">
+							{snippet.title}
+						</a>
+					</div>
+				{/each}
+			</section>
+		</div>
+
+		<div class="col-span-2">
+			{#if data.tags}
+				<Card.Root class="px-4 py-6 ml-12 bg-black">
+					<div class="mb-1 font-bold uppercase">Tags</div>
+					{#each data.tags as tag}
+						<Badge
+							class={cn('rounded-md', {
+								'bg-accent-foreground text-background hover:text-background': isActiveTag(
+									tag.id ?? ''
+								)
+							})}
+							variant="outline"
+							href={`/snippets?tag=${tag.id}`}>#{tag.id}</Badge
+						>
+					{/each}
+				</Card.Root>
+			{/if}
+		</div>
+	</div>
+</div>
