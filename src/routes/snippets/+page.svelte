@@ -4,11 +4,29 @@
 	import * as Card from '$lib/components/ui/card';
 	import { cn } from '$lib/utils.js';
 
+	type queryParams = 'tag' | 'category';
+
 	$: tag = $page.url.searchParams.get('tag');
 	$: category = $page.url.searchParams.get('category');
-	$: language = $page.url.searchParams.get('language');
-
 	$: isActiveTag = (t: string) => t === tag;
+	$: isActiveCategory = (t: string) => t === category;
+
+	let posts = [] as typeof data.posts;
+	$: onChange(data.posts, tag, category);
+
+	const onChange = (p: typeof data.posts, t: string | null, c: string | null) => {
+		posts = p;
+		if (t) {
+			posts = posts.filter((post) => post.tags.find((tag) => tag === t));
+		}
+	};
+
+	const setQueryParams = (key: queryParams, value: string | null, category: string | null) => {
+		const params = new URLSearchParams($page.url.search);
+		params.set(key, value ?? '');
+		category && params.set('category', category);
+		return `${$page.url.pathname}?${params.toString()}`;
+	};
 
 	export let data;
 </script>
@@ -20,33 +38,53 @@
 
 <div>
 	<div class="grid grid-cols-6 gap-4">
-		<div class="col-span-4">
-			<h2 class="text-4xl font-bold">{tag ? `# ${tag}` : 'Code snippets'}</h2>
+		<div class="col-span-6 md:col-span-4">
+			{#if !category && !tag}
+				<h2 class="text-4xl font-bold">All posts</h2>
+			{/if}
+
+			{#if category && !tag}
+				<h2 class="text-4xl font-bold">{category}</h2>
+			{/if}
+
+			{#if !category && tag}
+				<h2 class="text-4xl font-bold">#{tag}</h2>
+			{/if}
+
+			{#if category && tag}
+				<h2 class="mb-2 text-4xl font-bold">{category}</h2>
+				<h4 class="text-xl font-bold">#{tag}</h4>
+			{/if}
 
 			<section class="mt-8">
-				{#each data.snippets as snippet}
-					<div class="pt-1.5 pb-3 border-b border-accent">
-						<a href={`/blog/${snippet.slug}`} class="font-semibold text-accent-foreground">
-							{snippet.title}
-						</a>
-					</div>
+				{#each posts as post}
+					<a
+						href={`/snippets/${post.slug}`}
+						class="flex flex-col px-4 pt-3 pb-4 my-4 rounded-lg hover:bg-secondary/25 hover:no-underline group"
+					>
+						<h5 class="text-xl font-semibold text-accent-foreground group-hover:text-primary">
+							{post.title}
+						</h5>
+						<p class="text-sm text-secondary-foreground/80">{post.excerpt}</p>
+						<div class="flex items-center justify-between gap-4 mt-1">
+							<span class="text-xs font-bold text-secondary-foreground/50">{post.createdAt}</span>
+						</div>
+					</a>
 				{/each}
 			</section>
 		</div>
 
-		<div class="col-span-2">
+		<div class="col-span-6 md:col-span-2">
 			{#if data.tags}
-				<Card.Root class="px-4 py-6 ml-12 bg-black">
+				<Card.Root class="px-4 py-6 md:ml-12">
 					<div class="mb-1 font-bold uppercase">Tags</div>
 					{#each data.tags as tag}
 						<Badge
 							class={cn('rounded-md', {
-								'bg-accent-foreground text-background hover:text-background': isActiveTag(
-									tag.id ?? ''
-								)
+								'bg-primary text-background hover:text-background': isActiveTag(tag ?? '')
 							})}
 							variant="outline"
-							href={`/snippets?tag=${tag.id}`}>#{tag.id}</Badge
+							href={setQueryParams('tag', tag ?? '', category)}>#{tag}</Badge
 						>
 					{/each}
 				</Card.Root>

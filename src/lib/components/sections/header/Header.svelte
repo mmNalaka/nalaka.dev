@@ -1,5 +1,5 @@
 <script>
-	import { Icons } from '$components/icons';
+	import ThemeSwitch from '$components/ui/theme-switch/ThemeSwitch.svelte';
 
 	const links = [
 		{
@@ -18,16 +18,16 @@
 </script>
 
 <header>
-	<nav class="fixed top-0 left-0 z-20 w-full bg-transparent">
-		<div class="container flex flex-wrap items-center justify-between max-w-4xl p-4 mx-auto">
+	<nav class="fixed top-0 left-0 z-20 w-full bg-background">
+		<div class="container flex flex-wrap items-center justify-between max-w-3xl p-4 mx-auto">
 			<a
 				href="/"
-				class="flex items-center px-2 py-0.5 transition-all border-[3px] text-accent-foreground border-accent-foreground hover:no-underline hover:bg-accent-foreground hover:text-background"
+				class="flex items-center px-2 py-0.5 transition-all border-[3px] text-primary border-primary hover:no-underline hover:bg-primary hover:text-background"
 			>
 				<span class="self-center text-xl font-bold whitespace-nowrap">N.DEV</span>
 			</a>
 			<div
-				class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+				class="items-center justify-between hidden w-full gap-4 md:flex md:w-auto md:order-1"
 				id="navbar-sticky"
 			>
 				<ul
@@ -37,12 +37,13 @@
 						<li>
 							<a
 								href={link.href}
-								class="block py-2 pl-3 pr-4 rounded hover:text-accent-foreground md:p-0"
+								class="block py-2 pl-3 pr-4 text-sm rounded hover:text-primary md:p-0"
 								aria-current="page">{link.label}</a
 							>
 						</li>
 					{/each}
 				</ul>
+				<ThemeSwitch />
 			</div>
 		</div>
 	</nav>

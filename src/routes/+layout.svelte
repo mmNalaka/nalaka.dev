@@ -2,14 +2,15 @@
 	import './styles.css';
 	import '../app.postcss';
 
-	import { page } from '$app/stores';
 	import { Header } from '$components/sections/header';
+	import { ModeWatcher } from 'mode-watcher';
 </script>
 
 <div class="app">
 	<Header />
 
 	<main>
+		<ModeWatcher />
 		<slot />
 	</main>
 </div>
@@ -28,7 +29,7 @@
 		padding: 1rem;
 		padding-top: 10rem;
 		width: 100%;
-		max-width: 56rem;
+		max-width: 48rem;
 		margin: 0 auto;
 		box-sizing: border-box;
 	}

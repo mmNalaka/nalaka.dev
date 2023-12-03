@@ -17,10 +17,7 @@
 	const onChange = (p: typeof data.posts, t: string | null, c: string | null) => {
 		posts = p;
 		if (t) {
-			posts = posts.filter((post) => post.tags.find((tag) => tag.id === t));
-		}
-		if (c) {
-			posts = posts.filter((post) => post.categories.find((cat) => cat.name === c));
+			posts = posts.filter((post) => post.tags.find((tag) => tag === t));
 		}
 	};
 
@@ -41,7 +38,7 @@
 
 <div>
 	<div class="grid grid-cols-6 gap-4">
-		<div class="col-span-4">
+		<div class="col-span-6 md:col-span-4">
 			{#if !category && !tag}
 				<h2 class="text-4xl font-bold">All posts</h2>
 			{/if}
@@ -61,46 +58,33 @@
 
 			<section class="mt-8">
 				{#each posts as post}
-					<div class="pt-1.5 pb-3 border-b border-accent">
-						<a href={`/blog/${post.slug}`} class="font-semibold text-accent-foreground">
+					<a
+						href={`/blog/${post.slug}`}
+						class="flex flex-col px-4 pt-3 pb-4 my-4 rounded-lg hover:bg-secondary/25 hover:no-underline group"
+					>
+						<h5 class="text-xl font-semibold text-accent-foreground group-hover:text-primary">
 							{post.title}
-						</a>
-						<p class="text-sm text-slate-400">{post.excerpt}</p>
-					</div>
+						</h5>
+						<p class="text-sm text-secondary-foreground/80">{post.excerpt}</p>
+						<div class="flex items-center justify-between gap-4 mt-1">
+							<span class="text-xs font-bold text-secondary-foreground/50">{post.createdAt}</span>
+						</div>
+					</a>
 				{/each}
 			</section>
 		</div>
 
-		<div class="col-span-2">
-			{#if data.categories}
-				<Card.Root class="px-4 py-6 mb-4 ml-12 bg-gray-950">
-					<div class="mb-1 font-bold uppercase">categories</div>
-					{#each data.categories as category}
-						<a
-							class={cn('rounded-md flex justify-between', {
-								'text-accent-foreground': isActiveCategory(category.name ?? '')
-							})}
-							href={`/blog?category=${category.name}`}
-						>
-							<span>{category.name}</span>
-							<span>{category.posts.length}</span>
-						</a>
-					{/each}
-				</Card.Root>
-			{/if}
-
+		<div class="col-span-6 md:col-span-2">
 			{#if data.tags}
-				<Card.Root class="px-4 py-6 ml-12 bg-gray-950">
+				<Card.Root class="px-4 py-6 md:ml-12">
 					<div class="mb-1 font-bold uppercase">Tags</div>
 					{#each data.tags as tag}
 						<Badge
 							class={cn('rounded-md', {
-								'bg-accent-foreground text-background hover:text-background': isActiveTag(
-									tag.id ?? ''
-								)
+								'bg-primary text-background hover:text-background': isActiveTag(tag ?? '')
 							})}
 							variant="outline"
-							href={setQueryParams('tag', tag.id ?? '', category)}>#{tag.id}</Badge
+							href={setQueryParams('tag', tag ?? '', category)}>#{tag}</Badge
 						>
 					{/each}
 				</Card.Root>

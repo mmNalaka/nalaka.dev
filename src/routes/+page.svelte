@@ -14,9 +14,7 @@
 
 <div class="w-full">
 	<div class="flex flex-col items-start text-secondary-foreground">
-		<Title class="mb-4 text-4xl font-bold text-accent-foreground" styleOrder="h2"
-			>Hey, I'm Nalaka</Title
-		>
+		<Title class="mb-4 text-4xl font-bold text-primary" styleOrder="h2">Hey, I'm Nalaka</Title>
 		<p class="mt-2 text-xl font-blod">
 			I'm software developer based in Stockholm, Sweden. I'm passionate about building software that
 			is scalable, maintainable and testable. This is the space for me to share my knowledge and
