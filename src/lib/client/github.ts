@@ -46,7 +46,8 @@ let lastFetchTime: number = 0;
 export async function getIssues(contentType: ContentType, fetchFn: FetchFn) {
 	try {
 		const currentTime = Date.now();
-		if (currentTime - lastFetchTime > cacheExpiry) {
+		const isEmpty = content[contentType].length === 0;
+		if (isEmpty || currentTime - lastFetchTime > cacheExpiry) {
 			const params = new URLSearchParams({
 				state: 'all',
 				labels: contentType,
