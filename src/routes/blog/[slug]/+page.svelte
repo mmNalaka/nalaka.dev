@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { Button } from '$components/ui/button/index';
 	import { formatDate, getReadingTime, markdownRenderer } from '$lib/utils/post-helpers';
-	import { EyeIcon, HeartIcon, Share } from 'lucide-svelte';
+	import { Share } from 'lucide-svelte';
 
 	import type { PageData } from './$types';
 
@@ -28,9 +29,9 @@
 					{/each}
 				</div>
 			</div>
-			<button>
+			<Button variant="secondary">
 				<Share />
-			</button>
+			</Button>
 		</div>
 
 		<hr />
