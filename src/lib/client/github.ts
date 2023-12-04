@@ -39,7 +39,7 @@ const headers = process.env.GH_TOKEN && {
 };
 
 // This function will fetch issues from GitHub and return them as an array of objects.
-const cacheExpiry = Number(process.env.CACHE_EXPIRY_TIME) || 1000 * 60 * 60 * 1;
+const cacheExpiry = Number(process.env.CACHE_EXPIRY_TIME) || 1000 * 60 * 1;
 
 let lastFetchTime: number = 0;
 
