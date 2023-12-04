@@ -15,6 +15,11 @@
 					destructive:
 						'bg-destructive hover:bg-destructive/80 border-transparent text-destructive-foreground',
 					outline: 'text-foreground hover:border-accent-foreground hover:text-accent-foreground'
+				},
+				size: {
+					sm: 'text-xs',
+					md: 'text-sm',
+					lg: 'text-base'
 				}
 			},
 			defaultVariants: {
@@ -25,6 +30,7 @@
 
 	export let href: HTMLAnchorAttributes['href'] = undefined;
 	export let variant: VariantProps<typeof badgeVariants>['variant'] = 'default';
+	export let size: VariantProps<typeof badgeVariants>['size'] = 'md';
 	let className: string | undefined | null = undefined;
 	export { className as class };
 </script>
@@ -32,7 +38,7 @@
 <svelte:element
 	this={href ? 'a' : 'span'}
 	{href}
-	class={cn(badgeVariants({ variant, className }))}
+	class={cn(badgeVariants({ variant, className, size }))}
 	{...$$restProps}
 >
 	<slot />

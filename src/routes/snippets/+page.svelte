@@ -39,22 +39,24 @@
 <div>
 	<div class="grid grid-cols-6 gap-4">
 		<div class="col-span-6 md:col-span-4">
-			{#if !category && !tag}
-				<h2 class="text-4xl font-bold">All posts</h2>
-			{/if}
+			<div class="px-4">
+				{#if !category && !tag}
+					<h2 class="text-4xl font-bold">Snippets</h2>
+				{/if}
 
-			{#if category && !tag}
-				<h2 class="text-4xl font-bold">{category}</h2>
-			{/if}
+				{#if category && !tag}
+					<h2 class="text-4xl font-bold">{category}</h2>
+				{/if}
 
-			{#if !category && tag}
-				<h2 class="text-4xl font-bold">#{tag}</h2>
-			{/if}
+				{#if !category && tag}
+					<h2 class="text-4xl font-bold">#{tag}</h2>
+				{/if}
 
-			{#if category && tag}
-				<h2 class="mb-2 text-4xl font-bold">{category}</h2>
-				<h4 class="text-xl font-bold">#{tag}</h4>
-			{/if}
+				{#if category && tag}
+					<h2 class="mb-2 text-4xl font-bold">{category}</h2>
+					<h4 class="text-xl font-bold">#{tag}</h4>
+				{/if}
+			</div>
 
 			<section class="mt-8">
 				{#each posts as post}
@@ -66,8 +68,11 @@
 							{post.title}
 						</h5>
 						<p class="text-sm text-secondary-foreground/80">{post.excerpt}</p>
-						<div class="flex items-center justify-between gap-4 mt-1">
+						<div class="flex items-center justify-between gap-4 mt-4">
 							<span class="text-xs font-bold text-secondary-foreground/50">{post.createdAt}</span>
+							{#each post.tags as tag}
+								<span class="mr-1 text-xs text-secondary-foreground/50">#{tag}</span>
+							{/each}
 						</div>
 					</a>
 				{/each}
@@ -76,18 +81,19 @@
 
 		<div class="col-span-6 md:col-span-2">
 			{#if data.tags}
-				<Card.Root class="px-4 py-6 md:ml-12">
-					<div class="mb-1 font-bold uppercase">Tags</div>
+				<div class="px-4 py-6 rounded-md md:ml-12 bg-secondary-foreground/5">
+					<div class="mb-4 font-bold uppercase">Tags</div>
 					{#each data.tags as tag}
 						<Badge
 							class={cn('rounded-md', {
 								'bg-primary text-background hover:text-background': isActiveTag(tag ?? '')
 							})}
 							variant="outline"
+							size="sm"
 							href={setQueryParams('tag', tag ?? '', category)}>#{tag}</Badge
 						>
 					{/each}
-				</Card.Root>
+				</div>
 			{/if}
 		</div>
 	</div>
