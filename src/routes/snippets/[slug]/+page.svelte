@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '$components/ui/button';
+	import { Button } from '$components/ui/button/index';
 	import { formatDate, getReadingTime, markdownRenderer } from '$lib/utils/post-helpers';
 	import { Share } from 'lucide-svelte';
 
@@ -23,7 +23,7 @@
 				</span>
 				<div class="pb-4">
 					{#each data.post.tags as tag}
-						<a href={`/blog?tag=${tag}`} class="mr-2 text-sm text-primary">
+						<a href={`/snippets?tag=${tag}`} class="mr-2 text-sm text-primary">
 							#{tag}
 						</a>
 					{/each}

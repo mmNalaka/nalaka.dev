@@ -39,14 +39,14 @@ const headers = process.env.GH_TOKEN && {
 };
 
 // This function will fetch issues from GitHub and return them as an array of objects.
-const CACHE_EXPIRY_TIME = 0.1 * 60 * 1000; // 10 minutes in milliseconds
+const cacheExpiry = Number(process.env.CACHE_EXPIRY_TIME) || 1000 * 60 * 60 * 1;
 
 let lastFetchTime: number = 0;
 
 export async function getIssues(contentType: ContentType, fetchFn: FetchFn) {
 	try {
 		const currentTime = Date.now();
-		if (currentTime - lastFetchTime > CACHE_EXPIRY_TIME) {
+		if (currentTime - lastFetchTime > cacheExpiry) {
 			const params = new URLSearchParams({
 				state: 'all',
 				labels: contentType,

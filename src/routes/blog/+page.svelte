@@ -68,7 +68,7 @@
 							{post.title}
 						</h5>
 						<p class="text-sm text-secondary-foreground/80">{post.excerpt}</p>
-						<div class="flex items-center justify-between gap-4 mt-1">
+						<div class="flex items-center justify-between gap-4 mt-4">
 							<span class="text-xs font-bold text-secondary-foreground/50">{post.createdAt}</span>
 						</div>
 					</a>

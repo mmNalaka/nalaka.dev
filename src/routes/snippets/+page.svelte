@@ -70,9 +70,11 @@
 						<p class="text-sm text-secondary-foreground/80">{post.excerpt}</p>
 						<div class="flex items-center justify-between gap-4 mt-4">
 							<span class="text-xs font-bold text-secondary-foreground/50">{post.createdAt}</span>
-							{#each post.tags as tag}
-								<span class="mr-1 text-xs text-secondary-foreground/50">#{tag}</span>
-							{/each}
+							<div>
+								{#each post.tags as tag}
+									<span class="mr-1 text-xs text-secondary-foreground/50">#{tag}</span>
+								{/each}
+							</div>
 						</div>
 					</a>
 				{/each}
