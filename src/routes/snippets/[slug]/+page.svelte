@@ -6,6 +6,7 @@
 
 	$: readingTime = getReadingTime(data.post?.content ?? '');
 	$: html = markdownRenderer.parse(data.post?.content ?? '');
+
 	export let data: PageData;
 </script>
 
@@ -28,7 +29,7 @@
 					{/each}
 				</div>
 			</div>
-			<ShareBox link={window.location.href} title={data.post.title} />
+			<ShareBox link={`/snippets/${data.post.slug}`} title={data.post.title} />
 		</div>
 
 		<hr />

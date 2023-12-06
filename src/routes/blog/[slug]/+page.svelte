@@ -29,7 +29,7 @@
 					{/each}
 				</div>
 			</div>
-			<ShareBox link={window.location.href} title={data.post.title} />
+			<ShareBox link={`/blog/${data.post.slug}`} title={data.post.title} />
 		</div>
 
 		<hr />
