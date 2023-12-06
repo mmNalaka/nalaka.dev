@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { Button } from '$components/ui/button/index';
+	import { ShareBox } from '$components/sections/share-box';
 	import { formatDate, getReadingTime, markdownRenderer } from '$lib/utils/post-helpers';
-	import { Share } from 'lucide-svelte';
 
 	import type { PageData } from './$types';
 
@@ -29,9 +28,7 @@
 					{/each}
 				</div>
 			</div>
-			<Button variant="secondary">
-				<Share />
-			</Button>
+			<ShareBox link={window.location.href} title={data.post.title} />
 		</div>
 
 		<hr />
