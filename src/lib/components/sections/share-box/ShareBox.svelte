@@ -6,10 +6,15 @@
 	export let link: string;
 	export let title: string;
 
-	const copyLink = () => {
+	const getShareUrl = (url: string) => {
 		const base = window.location.href;
-		const url = new URL(link, base);
-		navigator.clipboard.writeText(url.toString());
+		const urlObj = new URL(url, base);
+		return urlObj.toString();
+	};
+
+	const copyLink = () => {
+		const url = getShareUrl(link);
+		navigator.clipboard.writeText(url);
 	};
 </script>
 
@@ -33,7 +38,7 @@
 					variant="ghost"
 					size="sm"
 					class="hover:no-underline"
-					href="https://www.facebook.com/sharer/sharer.php?u={link}"
+					href="https://www.facebook.com/sharer/sharer.php?u={getShareUrl(link)}"
 				>
 					<Facebook class="w-4 h-4 mr-2" />
 					Facebook
@@ -44,7 +49,7 @@
 					variant="ghost"
 					size="sm"
 					class="hover:no-underline"
-					href="https://twitter.com/intent/tweet?text={title}&url={link}"
+					href="https://twitter.com/intent/tweet?text={title}&url={getShareUrl(link)}"
 				>
 					<TwitterIcon class="w-4 h-4 mr-2" />
 					Twitter
@@ -55,7 +60,9 @@
 					variant="ghost"
 					size="sm"
 					class="hover:no-underline"
-					href="https://www.linkedin.com/shareArticle?mini=true&url={link}&title={title}"
+					href="https://www.linkedin.com/shareArticle?mini=true&url={getShareUrl(
+						link
+					)}&title={title}"
 				>
 					<LinkedinIcon class="w-4 h-4 mr-2" />
 					LinkedIn

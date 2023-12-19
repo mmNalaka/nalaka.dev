@@ -38,6 +38,8 @@ const headers = process.env.GH_TOKEN && {
 	Authorization: `token ${process.env.GH_TOKEN}`
 };
 
+const SUPPORTED_TAGS = ['featured'];
+
 // This function will fetch issues from GitHub and return them as an array of objects.
 const cacheExpiry = Number(process.env.CACHE_EXPIRY_TIME) || 1000 * 60 * 1;
 
@@ -96,12 +98,29 @@ export async function getIssue(contentType: ContentType, slug: string, fetchFn: 
 	return null;
 }
 
+export const getFeed = async (fetchFn: FetchFn) => {
+	const [posts, snippets] = await Promise.all([
+		getIssues('post', fetchFn),
+		getIssues('snippet', fetchFn)
+	]);
+
+	const latestPosts = posts.slice(0, 5);
+	const latestSnippets = snippets.slice(0, 5);
+	const featuredPosts = posts.filter((post) => post.tags.includes('featured'));
+
+	return {
+		latestPosts,
+		latestSnippets,
+		featuredPosts
+	};
+};
+
 const parseIssue = (issue: GitHubIssue): Item => {
 	const { title, body, created_at, labels, number } = issue;
 	const createdAt = formatDate(created_at);
 	const readingTime = getReadingTime(body);
 	const tags = labels
-		.filter((label) => label.name.startsWith('#'))
+		.filter((label) => label.name.startsWith('#') || SUPPORTED_TAGS.includes(label.name))
 		.map((label) => label.name)
 		.map((tag) => tag.replace('#', ''));
 	const image = issue?.body?.match(/!\[.*\]\((.*)\)/)?.[1];

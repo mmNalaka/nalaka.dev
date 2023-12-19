@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Button } from '$components/ui/button';
 	import Title from '$components/ui/title/Title.svelte';
-	import * as Card from '$lib/components/ui/card';
 	import { ArrowRight } from 'lucide-svelte';
 
 	export let data;
@@ -30,30 +29,49 @@
 				<ArrowRight class="w-4 h-4 ml-2" />
 			</Button>
 		</div>
-		<div class="grid grid-flow-row gap-4">
+		<div class="grid grid-flow-row grid-cols-2 gap-4">
 			{#each data.latestPosts as post}
-				<Card.Root class="px-4 py-2">
-					<Card.Title>{post.title}</Card.Title>
-					<Card.Description>{post.excerpt}</Card.Description>
-				</Card.Root>
+				<article
+					class="hover:animate-background rounded-xl bg-gradient-to-r from-primary/50 via-blue-500/50 to-purple-600/50 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+				>
+					<a class="hover:no-underline" href={`/blog/${post.slug}`}>
+						<div class="rounded-[10px] bg-white dark:bg-black p-4 h-full">
+							<h5 class="text-xl font-semibold text-accent-foreground group-hover:text-primary">
+								{post.title}
+							</h5>
+							<p class="text-sm text-secondary-foreground/80">{post.excerpt}</p>
+							<div class="flex items-center justify-between gap-4 mt-4">
+								<span class="text-xs font-bold text-secondary-foreground/50">{post.createdAt}</span>
+							</div>
+						</div>
+					</a>
+				</article>
 			{/each}
 		</div>
 	</section>
 
 	<section class="mt-8">
 		<div class="flex items-center justify-between mb-4">
-			<h3 class="text-xl font-semibold tracking-tight scroll-m-20">Popular posts</h3>
+			<h3 class="text-xl font-semibold tracking-tight scroll-m-20">Featured posts</h3>
 		</div>
 		<div class="grid grid-flow-row gap-4">
-			{#each data.popularPosts as post}
-				<Card.Root class="px-4 py-2">
-					<Card.Title>{post.title}</Card.Title>
-					<Card.Description>{post.excerpt}</Card.Description>
-				</Card.Root>
+			{#each data.featuredPosts as post}
+				<article
+					class="relative hover:animate-background rounded-xl bg-gradient-to-r from-primary/50 via-blue-500/50 to-purple-600/50 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+				>
+					<a class="hover:no-underline" href={`/blog/${post.slug}`}>
+						<div class="rounded-[10px] bg-white dark:bg-black p-4 h-full">
+							<h5 class="text-xl font-semibold text-accent-foreground group-hover:text-primary">
+								{post.title}
+							</h5>
+							<p class="text-sm text-secondary-foreground/80">{post.excerpt}</p>
+							<div class="flex items-center justify-between gap-4 mt-4">
+								<span class="text-xs font-bold text-secondary-foreground/50">{post.createdAt}</span>
+							</div>
+						</div>
+					</a>
+				</article>
 			{/each}
 		</div>
 	</section>
 </div>
-
-<style>
-</style>
