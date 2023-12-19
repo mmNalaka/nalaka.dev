@@ -47,7 +47,3 @@
 {#if !data.post}
 	<div class="mt-4">404</div>
 {/if}
-
-<style>
-	@import 'highlight.js/styles/atom-one-dark-reasonable.css';
-</style>

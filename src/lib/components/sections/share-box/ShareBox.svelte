@@ -7,7 +7,9 @@
 	export let title: string;
 
 	const copyLink = () => {
-		navigator.clipboard.writeText(link);
+		const base = window.location.href;
+		const url = new URL(link, base);
+		navigator.clipboard.writeText(url.toString());
 	};
 </script>
 

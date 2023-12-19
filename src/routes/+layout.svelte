@@ -9,7 +9,7 @@
 <div class="app">
 	<Header />
 
-	<main>
+	<main class="">
 		<ModeWatcher />
 		<slot />
 	</main>
@@ -27,10 +27,14 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
-		padding-top: 10rem;
+		padding-top: 6rem;
 		width: 100%;
 		max-width: 48rem;
 		margin: 0 auto;
 		box-sizing: border-box;
+
+		@media (min-width: 768px) {
+			padding-top: 10rem;
+		}
 	}
 </style>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ShareBox from '$components/sections/share-box/ShareBox.svelte';
-	import { Button } from '$components/ui/button/index';
 	import { formatDate, getReadingTime, markdownRenderer } from '$lib/utils/post-helpers';
 
 	import type { PageData } from './$types';
@@ -47,7 +46,3 @@
 {#if !data.post}
 	<div class="mt-4">404</div>
 {/if}
-
-<style>
-	@import 'highlight.js/styles/atom-one-dark-reasonable.css';
-</style>
